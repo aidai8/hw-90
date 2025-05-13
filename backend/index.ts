@@ -2,6 +2,7 @@ import express from "express";
 import expressWs from "express-ws";
 import cors from "cors";
 import WebSocket from "ws";
+import {IncomingMessage, Pixel} from "./types";
 
 const app = express();
 const wsInstance = expressWs(app);
@@ -13,17 +14,6 @@ const router = express.Router();
 wsInstance.applyTo(router);
 
 const connectedClient: WebSocket[] = [];
-
-interface IncomingMessage {
-    type: string;
-    payload: any;
-}
-
-interface Pixel {
-    x: number;
-    y: number;
-    color: string;
-}
 
 const savedPixels: Pixel[] = [];
 
